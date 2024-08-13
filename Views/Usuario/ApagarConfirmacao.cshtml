@@ -1,0 +1,22 @@
+@model UsuarioModel
+@{
+	ViewData["Title"] = "Confirmação de apagar o contato";
+}
+
+<asp:Panel ID="pnlAlertBox" runat="server" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:1000;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Alerta!</h4>
+            </div>
+            <div class="modal-body">
+                Deseja realmente apagar o cadastro do usuário?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary btn-block" asp-controller="Usuario" asp-action="Apagar" asp-route-id="@Model.Id" role="button">Confirmar exclusão</a>
+                <a class="btn btn-danger btn-block" asp-controller="Usuario" asp-action="Index" role="button">Cancelar exclusão</a>
+            </div>
+        </div>
+    </div>
+</asp:Panel>
+

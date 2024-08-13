@@ -1,0 +1,87 @@
+@model IEnumerable<UsuarioModel>
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Usuarios";
+}
+
+
+
+<br />
+<div class="text-center">
+	<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+		<a class="btn btn-primary" role="button" asp-controller="Usuario" asp-action="Criar">Adicionar novo usuário</a>
+	</div>
+	<br />
+
+	<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteModalLabel">Confirmar</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Tem certeza que deseja apagar este cadastro?
+				</div>
+				<div class="modal-footer">
+					<button id="confirmDeleteButton" type="button" class="btn btn-primary" role="button" data-url="">Confirmar exclusão</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br />
+
+<h1 class="display-4">Listagem dos usuários</h1>
+
+<table class="table" id="table-usuarios" style="width:100%;">
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Login</th>
+			<th scope="col">Perfil</th>
+			<th scope="col">Data de cadastro</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			foreach (var usuario in Model)
+			{
+				<tr>
+					<th scope="row">@usuario.Id</th>
+					<td>@usuario.Nome</td>
+					<td>@usuario.Login</td>
+					<td>@(usuario.Perfil == Estoque.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
+					<td>@usuario.DataCadastro.ToLocalTime()</td>
+					<td>
+						<div class="btn-group" role="group">
+							<a class="btn btn-primary" role="button" asp-route-id="@usuario.Id" asp-controller="Usuario"
+								asp-action="Editar">Editar</a>
+							<button type="button" class="btn btn-danger" data-toggle="modal"
+								data-target="#deleteConfirmationModal" data-id="@usuario.Id"
+								data-url="@Url.Action("Apagar", "Usuario")">
+								Apagar
+							</button>
+						</div>
+					</td>
+				</tr>
+			}
+		}
+		else
+		{
+			<tr class="odd">
+				<td valign="top" colspan="5">Nenhum usuário encontrado</td>
+			</tr>
+		}
+	</tbody>
+</table>
+</div>

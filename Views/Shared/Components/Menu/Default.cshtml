@@ -1,0 +1,59 @@
+@model UsuarioModel
+
+<aside id="sidebar">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#">Menu</a>
+        </div>
+    </div>
+    <ul class="sidebar-nav">
+        <li class="sidebar-item">
+            <a asp-controller="Home" asp-action="Index" class="sidebar-link">
+                <i class="fa-solid fa-house"></i>
+                <span class="items">Página Inicial</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a asp-controller="Usuario" asp-action="Index" class="sidebar-link">
+                <i class="fa-solid fa-users-rectangle"></i>
+                <span class="items">Usuários</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span class="items">Produtos</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="fa-solid fa-boxes-packing"></i>
+                <span class="items">Entrada</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="fa-solid fa-people-carry-box"></i>
+                <span class="items">Saida</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="fa-solid fa-handshake-angle"></i>
+                <span class="items">Ajuda</span>
+            </a>
+        </li>
+    </ul>
+    <div class="sidebar-footer">
+        <form asp-controller="Login" asp-action="Sair" method="post">
+            <button type="submit" class="sidebar-link btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="items">Sair</span>
+            </button>
+        </form>
+    </div>
+</aside>
+</div>
